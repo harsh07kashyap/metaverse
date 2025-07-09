@@ -1,0 +1,21 @@
+What is the Metaverse?:
+The metaverse is a shared, digital 3D world where users interact via avatars—like a virtual world combining social media, games, and meetings.
+
+What is the ZEP?:
+ZEP is a browser-based metaverse platform where users can:
+Chat, meet,video calls, play games, or host events.
+Create or join 3D spaces using customizable maps and avatars.
+
+How to Create a space in ZEP world:
+Go to https://zep.us/en.
+Click “Create Space” (top right).
+Sign in using email.
+Choose a template and your space will be ready.
+Customize settings: space name, capacity, access link.
+Share the link to invite others.
+
+How to Join an existing Space?:
+Sign in using email.
+Receive a ZEP space link (e.g., https://zep.us/play/xyz123) or,
+Move to My spaces section and then select "Join other spaces" option and choose the space you want to join.
+Enter the space (no app or install needed).
