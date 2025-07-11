@@ -8,6 +8,7 @@ import { hash,compare } from "../../scrypt";
 import jwt from "jsonwebtoken"
 import { JWT_PASSWORD } from "../../config";
 import client from "@repo/db/client"
+import type {Element} from "@prisma/client";
 
 router.post("/signup",async (req,res)=>{
     console.log("Received data:", req.body);
@@ -100,7 +101,7 @@ router.post("/signin",async(req,res)=>{
 router.get("/elements",async (req,res)=>{
     const elements=await client.element.findMany()
     res.json({
-        elements:elements.map((e)=>({
+        elements:elements.map((e:Element)=>({
             id:e.id,
             width:e.width,
             height:e.height,
