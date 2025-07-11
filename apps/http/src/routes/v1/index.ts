@@ -95,10 +95,12 @@ router.post("/signin",async(req,res)=>{
     }
 })
 
+
+
 router.get("/elements",async (req,res)=>{
     const elements=await client.element.findMany()
     res.json({
-        elements:elements.map(e=>({
+        elements:elements.map((e)=>({
             id:e.id,
             width:e.width,
             height:e.height,
@@ -111,7 +113,7 @@ router.get("/elements",async (req,res)=>{
 router.get("/avatars",async(req,res)=>{
     const avatars=await client.avatar.findMany()
     res.json({
-        avatars:avatars.map(a=>({
+        avatars:avatars.map((a)=>({
             id:a.id,
             name:a.name,
             imageUrl:a.imageUrl,

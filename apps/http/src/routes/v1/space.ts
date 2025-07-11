@@ -1,3 +1,4 @@
+
 import { Router } from "express";
 import client from "@repo/db/client"
 import { userMiddleware } from "../../middleware/user";
@@ -56,8 +57,9 @@ spaceRouter.post("/",userMiddleware,async(req,res)=>{
                 }
             });
     
+
             await client.spaceElements.createMany({
-                data: map.mapElements.map(e => ({
+                data: map.mapElements.map((e) => ({
                     spaceId: space.id,
                     elementId: e.elementId,
                     x: e.x!,
@@ -135,7 +137,7 @@ spaceRouter.get("/notCreatedByUser",userMiddleware,async(req,res)=>{
         })
         res.json({
             username:user?.username,
-            spaces:spaces.map(s=>({
+            spaces:spaces.map((s)=>({
                 id:s.id,
                 name:s.name,
                 dimensions:`${s.width}x${s.height}`,
@@ -165,7 +167,7 @@ spaceRouter.get("/createdByUser",userMiddleware,async(req,res)=>{
         })
         res.json({
             username:user?.username,
-            spaces:spaces.map(s=>({
+            spaces:spaces.map((s)=>({
                 id:s.id,
                 name:s.name,
                 dimensions:`${s.width}x${s.height}`,
@@ -281,7 +283,7 @@ spaceRouter.get("/:spaceId",userMiddleware,async(req,res)=>{
 
     res.json({
         "dimensions":`${space.width}x${space.height}`,
-        elements:space.elements.map(e=>({
+        elements:space.elements.map((e)=>({
             id:e.id,
             element:{
                 id:e.element.id,    
