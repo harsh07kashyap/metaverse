@@ -10,12 +10,13 @@
     "start": "node dist/index.js",
     "dev": "npm run build && npm run start"
   },
+
   
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@repo/db": "file:../db",
+    "@repo/db": "file:../../packages/db",
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.7",
     "cors": "^2.8.5",
