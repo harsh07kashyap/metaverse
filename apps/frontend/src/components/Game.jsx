@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../App.css'
-import {ZegoUIKitPrebuilt} from "@zegocloud/zego-uikit-prebuilt"
+
+
 import Room from './Room';
 
 const Arena = () => {
