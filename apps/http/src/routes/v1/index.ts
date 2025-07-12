@@ -114,10 +114,12 @@ router.get("/elements",async (req,res)=>{
     })
 })
 
+
 router.get("/avatars",async(req,res)=>{
-    const avatars=await client.avatar.findMany()
+    const avatars=await client.avatar.findMany();
+    type AvatarType=typeof avatars[number];
     res.json({
-        avatars:avatars.map((a)=>({
+        avatars:avatars.map((a:AvatarType)=>({
             id:a.id,
             name:a.name,
             imageUrl:a.imageUrl,

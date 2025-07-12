@@ -51,8 +51,9 @@ userRouter.get("/metadata/bulk",async(req,res)=>{
     })
 
     
+    type MetadataType=typeof metadatas[number];
     res.json({
-        avatars:metadatas.map((m)=>({
+        avatars:metadatas.map((m:MetadataType)=>({
             userId:m.id,
             avatar:m.avatar?.imageUrl,
         })),
