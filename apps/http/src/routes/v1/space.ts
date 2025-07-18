@@ -1,14 +1,16 @@
 
 
+
 import { Router } from "express";
 import client from "@repo/db/client"
 import { userMiddleware } from "../../middleware/user";
 import { AddElementSchema,CreateSpaceSchema,DeleteElementSchema } from "../../types";
+import { Request, Response } from 'express';
 
 export const spaceRouter=Router();
 
 //to create space
-spaceRouter.post("/",userMiddleware,async(req,res)=>{
+spaceRouter.post("/",userMiddleware,async(req:Request,res:Response)=>{
     const parsedData=CreateSpaceSchema.safeParse(req.body);
     if(!parsedData.success){
         res.status(400).json({
@@ -80,7 +82,7 @@ spaceRouter.post("/",userMiddleware,async(req,res)=>{
 
 
 //to delete space
-spaceRouter.delete("/:spaceId",userMiddleware,async(req,res)=>{
+spaceRouter.delete("/:spaceId",userMiddleware,async(req:Request,res:Response)=>{
     try{
         const space=await client.space.findUnique({  
             where:{
@@ -119,7 +121,7 @@ spaceRouter.delete("/:spaceId",userMiddleware,async(req,res)=>{
 
 //to get all spaces
 
-spaceRouter.get("/notCreatedByUser",userMiddleware,async(req,res)=>{
+spaceRouter.get("/notCreatedByUser",userMiddleware,async(req:Request,res:Response)=>{
     try{
         const user=await client.user.findUnique({
             where:{
@@ -152,7 +154,7 @@ spaceRouter.get("/notCreatedByUser",userMiddleware,async(req,res)=>{
         })
     }
 })
-spaceRouter.get("/createdByUser",userMiddleware,async(req,res)=>{
+spaceRouter.get("/createdByUser",userMiddleware,async(req:Request,res:Response)=>{
     try{
         const user=await client.user.findUnique({
             where:{
@@ -184,7 +186,7 @@ spaceRouter.get("/createdByUser",userMiddleware,async(req,res)=>{
     }
 })
 //to add element to space
-spaceRouter.post("/element",userMiddleware,async(req,res)=>{
+spaceRouter.post("/element",userMiddleware,async(req:Request,res:Response)=>{
     const parsedData=AddElementSchema.safeParse(req.body);
     if(!parsedData.success){
         res.status(400).json({
@@ -229,7 +231,7 @@ spaceRouter.post("/element",userMiddleware,async(req,res)=>{
 })
 
 //to delete element from space
-spaceRouter.delete("/element",userMiddleware,async(req,res)=>{
+spaceRouter.delete("/element",userMiddleware,async(req:Request,res:Response)=>{
     const parsedData=DeleteElementSchema.safeParse(req.body);
     if(!parsedData.success){
         res.status(400).json({
@@ -263,7 +265,7 @@ spaceRouter.delete("/element",userMiddleware,async(req,res)=>{
 })
 
 //to get space
-spaceRouter.get("/:spaceId",userMiddleware,async(req,res)=>{
+spaceRouter.get("/:spaceId",userMiddleware,async(req:Request,res:Response)=>{
     const space=await client.space.findUnique({
         where:{
             id:req.params.spaceId,

@@ -1,11 +1,14 @@
+
 import { Router } from "express";
 import client from "@repo/db/client";
 import { adminMiddleware } from "../../middleware/admin";
 import { AddElementSchema, CreateAvatarSchema, CreateElementSchema, CreateMapSchema, UpdateElementSchema } from "../../types";
+import { Request, Response } from 'express';
 export const adminRouter=Router();
 adminRouter.use(adminMiddleware)
 
-adminRouter.post("/element",adminMiddleware,async(req,res)=>{
+
+adminRouter.post("/element",adminMiddleware,async(req:Request,res:Response)=>{
     const parsedData=CreateElementSchema.safeParse(req.body);
     if(!parsedData.success){
         res.status(400).json({
@@ -27,7 +30,7 @@ adminRouter.post("/element",adminMiddleware,async(req,res)=>{
     })
 })
 
-adminRouter.put("/element/:elementId",adminMiddleware,async(req,res)=>{
+adminRouter.put("/element/:elementId",adminMiddleware,async(req:Request,res:Response)=>{
     const parsedData=UpdateElementSchema.safeParse(req.body);
     if(!parsedData.success){
         res.status(400).json({
@@ -50,7 +53,7 @@ adminRouter.put("/element/:elementId",adminMiddleware,async(req,res)=>{
 
 })
 
-adminRouter.post("/avatar",adminMiddleware,async(req,res)=>{
+adminRouter.post("/avatar",adminMiddleware,async(req:Request,res:Response)=>{
     const parsedData=CreateAvatarSchema.safeParse(req.body);
     if(!parsedData.success){
         res.status(400).json({
@@ -70,7 +73,7 @@ adminRouter.post("/avatar",adminMiddleware,async(req,res)=>{
     })
 })
 
-adminRouter.post("/map",adminMiddleware,async(req,res)=>{
+adminRouter.post("/map",adminMiddleware,async(req:Request,res:Response)=>{
     const parsedData=CreateMapSchema.safeParse(req.body);
     if(!parsedData.success){
         res.status(400).json({

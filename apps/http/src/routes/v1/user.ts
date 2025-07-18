@@ -3,9 +3,12 @@ import { userMiddleware } from "../../middleware/user";
 import { UpdateMetaDataSchema } from "../../types";
 import client from "@repo/db/client"
 
+import { Request, Response } from 'express';
+
 export const userRouter=Router();
 
-userRouter.post("/metadata",userMiddleware,async (req,res)=>{
+
+userRouter.post("/metadata",userMiddleware,async (req:Request,res:Response)=>{
     const parsedData=UpdateMetaDataSchema.safeParse(req.body);
     if(!parsedData.success){
         res.status(400).json({
@@ -35,7 +38,7 @@ userRouter.post("/metadata",userMiddleware,async (req,res)=>{
 })
 
 
-userRouter.get("/metadata/bulk",async(req,res)=>{
+userRouter.get("/metadata/bulk",async(req:Request,res:Response)=>{
     const userIdString=(req.query.ids??"[]") as string;
     const userIds=userIdString.slice(1,userIdString?.length-2).split(",");
     const metadatas=await client.user.findMany({

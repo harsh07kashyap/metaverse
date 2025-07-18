@@ -1,3 +1,4 @@
+
 import { Router } from "express";
 import { userRouter } from "./user";
 import { adminRouter } from "./admin";
@@ -8,10 +9,11 @@ import { hash,compare } from "../../scrypt";
 import jwt from "jsonwebtoken"
 import { JWT_PASSWORD } from "../../config";
 import client from "@repo/db/client"
+import { Request, Response } from 'express';
 
 
 
-router.post("/signup",async (req,res)=>{
+router.post("/signup",async (req:Request,res:Response)=>{
     console.log("Received data:", req.body);
     const parsedData=SignupSchema.safeParse(req.body);
     if(!parsedData.success){
@@ -50,7 +52,7 @@ router.post("/signup",async (req,res)=>{
 })
 
 
-router.post("/signin",async(req,res)=>{
+router.post("/signin",async(req:Request,res:Response)=>{
     console.log("Received data:", req.body);
     const parsedData=SigninSchema.safeParse(req.body);
     if(!parsedData.success){
@@ -100,7 +102,7 @@ router.post("/signin",async(req,res)=>{
 
 
 
-router.get("/elements",async (req,res)=>{
+router.get("/elements",async (req:Request,res:Response)=>{
     const elements=await client.element.findMany();
     type ElementType=typeof elements[number];
     res.json({
@@ -115,7 +117,7 @@ router.get("/elements",async (req,res)=>{
 })
 
 
-router.get("/avatars",async(req,res)=>{
+router.get("/avatars",async(req:Request,res:Response)=>{
     const avatars=await client.avatar.findMany();
     type AvatarType=typeof avatars[number];
     res.json({
