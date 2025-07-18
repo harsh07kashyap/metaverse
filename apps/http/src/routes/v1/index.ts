@@ -9,7 +9,8 @@ import { hash,compare } from "../../scrypt";
 import jwt from "jsonwebtoken"
 import { JWT_PASSWORD } from "../../config";
 import client from "@repo/db/client"
-import { Request, Response } from 'express';
+
+import type { Request, Response } from 'express';
 
 
 
