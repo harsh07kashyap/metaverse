@@ -1,3 +1,4 @@
+
 {
   "name": "metaverse",
   "private": true,
@@ -15,7 +16,7 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "npm@10.2.3",
+  "packageManager": "pnpm@10.13.1",
   "workspaces": [
     "apps/*",
     "packages/*"

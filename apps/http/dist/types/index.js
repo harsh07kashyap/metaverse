@@ -3,16 +3,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateMapSchema = exports.CreateAvatarSchema = exports.UpdateElementSchema = exports.CreateElementSchema = exports.AddElementSchema = exports.CreateSpaceSchema = exports.UpdateMetaDataSchema = exports.SigninSchema = exports.SignupSchema = void 0;
+exports.CreateMapSchema = exports.CreateAvatarSchema = exports.UpdateElementSchema = exports.CreateElementSchema = exports.AddElementSchema = exports.DeleteElementSchema = exports.CreateSpaceSchema = exports.UpdateMetaDataSchema = exports.SigninSchema = exports.SignupSchema = void 0;
 const zod_1 = __importDefault(require("zod"));
 exports.SignupSchema = zod_1.default.object({
-    username: zod_1.default.string().email(),
-    password: zod_1.default.string().min(8),
+    username: zod_1.default.string(),
+    password: zod_1.default.string(),
     type: zod_1.default.enum(['admin', 'user'])
 });
 exports.SigninSchema = zod_1.default.object({
-    username: zod_1.default.string().email(),
-    password: zod_1.default.string().min(8)
+    username: zod_1.default.string(),
+    password: zod_1.default.string()
 });
 exports.UpdateMetaDataSchema = zod_1.default.object({
     avatarId: zod_1.default.string()
@@ -20,7 +20,10 @@ exports.UpdateMetaDataSchema = zod_1.default.object({
 exports.CreateSpaceSchema = zod_1.default.object({
     name: zod_1.default.string(),
     dimensions: zod_1.default.string().regex(/^[0-9]{1,4}x[0-9]{1,4}$/),
-    mapId: zod_1.default.string(),
+    mapId: zod_1.default.string().optional()
+});
+exports.DeleteElementSchema = zod_1.default.object({
+    id: zod_1.default.string(),
 });
 exports.AddElementSchema = zod_1.default.object({
     elementId: zod_1.default.string(),
@@ -44,6 +47,7 @@ exports.CreateAvatarSchema = zod_1.default.object({
 exports.CreateMapSchema = zod_1.default.object({
     thumbnail: zod_1.default.string(),
     dimensions: zod_1.default.string().regex(/^[0-9]{1,4}x[0-9]{1,4}$/),
+    name: zod_1.default.string(),
     defaultElements: zod_1.default.array(zod_1.default.object({
         elementId: zod_1.default.string(),
         x: zod_1.default.number(),
