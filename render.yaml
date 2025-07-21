@@ -1,10 +1,11 @@
+
 services:
   - type: web
     name: metaverse-http
     rootDir: apps/http
     env: node
-    buildCommand: pnpm install && pnpm --filter @repo/http build
-    startCommand: pnpm --filter @repo/http start
+    buildCommand: pnpm install && pnpm --filter @repo/http @repo/db build
+    startCommand: pnpm --filter @repo/http @repo/db start
     envVars:
       - key: DATABASE_URL
         fromDatabase:
